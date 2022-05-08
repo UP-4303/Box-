@@ -10,6 +10,8 @@ var moveRight = [false,false,false]
 var moveLeft = [false,false,false]
 var moveUp = [false,false,false]
 
+var facingPositiveX = true
+
 func _process(_delta):
 	moveRight[0] = Input.is_action_just_pressed("move_right")
 	moveRight[1] = Input.is_action_pressed("move_right")
@@ -28,8 +30,10 @@ func _physics_process(delta):
 	
 	if moveRight[1]:
 		velocity.x += speed
+		facingPositiveX = true
 	if moveLeft[1]:
 		velocity.x -= speed
+		facingPositiveX = false
 	
 	if is_on_floor() and moveUp[1]:
 		velocity.y -= jumpForce
